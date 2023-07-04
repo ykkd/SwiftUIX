@@ -9,7 +9,7 @@ public protocol DynamicViewPresentable {
     /// The view's presentation name (if any).
     var presentationName: AnyHashable? { get }
     
-    var presenter: DynamicViewPresenter? { get }
+    var _presenter: DynamicViewPresenter? { get }
 }
 
 // MARK: - Conformances
@@ -21,7 +21,7 @@ extension UIView: DynamicViewPresentable {
         return nil
     }
     
-    public var presenter: DynamicViewPresenter? {
+    public var _presenter: DynamicViewPresenter? {
         nearestViewController
     }
 }
@@ -31,7 +31,7 @@ extension UIViewController: DynamicViewPresentable {
         presentationCoordinator.presentationName
     }
     
-    public var presenter: DynamicViewPresenter? {
+    public var _presenter: DynamicViewPresenter? {
         presentingViewController
     }
 }
@@ -43,7 +43,7 @@ extension NSView: DynamicViewPresentable {
         return nil
     }
     
-    public var presenter: DynamicViewPresenter? {
+    public var _presenter: DynamicViewPresenter? {
         window
     }
 }
@@ -53,7 +53,7 @@ extension NSViewController: DynamicViewPresentable {
         presentationCoordinator.presentationName
     }
     
-    public var presenter: DynamicViewPresenter? {
+    public var _presenter: DynamicViewPresenter? {
         presentingViewController ?? view.presenter
     }
 }
@@ -63,7 +63,7 @@ extension NSWindow: DynamicViewPresentable {
         return nil
     }
     
-    public var presenter: DynamicViewPresenter? {
+    public var _presenter: DynamicViewPresenter? {
         parent
     }
 }

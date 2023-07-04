@@ -296,10 +296,10 @@ extension View {
     public func navigationBarTitleView<V: View>(
         _ center: V
     ) -> some View {
-        withEnvironmentValue(\.presenter) { presenter in
+        withEnvironmentValue(\._presenter) { _presenter in
             navigationBarItems(
                 leading: EmptyView(),
-                center: center.environment(\.presenter, presenter),
+                center: center.environment(\._presenter, _presenter),
                 trailing: EmptyView(),
                 displayMode: .automatic
             )

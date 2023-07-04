@@ -109,7 +109,7 @@ extension CocoaPresentationCoordinator: DynamicViewPresenter {
         self
     }
     
-    public var presenter: DynamicViewPresenter? {
+    public var _presenter: DynamicViewPresenter? {
         presentingCoordinator
     }
     
@@ -341,7 +341,7 @@ struct _UseCocoaPresentationCoordinator: ViewModifier {
     func body(content: Content) -> some View {
         content
             .environment(\.cocoaPresentationCoordinatorBox, presentationCoordinatorBox)
-            .environment(\.presenter, coordinator?.presentingCoordinator)
+            .environment(\._presenter, coordinator?.presentingCoordinator)
             .environment(\.presentationManager, CocoaPresentationMode(coordinator: presentationCoordinatorBox))
             .onPreferenceChange(_NamedViewDescription.PreferenceKey.self) { [weak coordinator] in
                 if let parent = coordinator?.viewController as? _opaque_CocoaViewController {
